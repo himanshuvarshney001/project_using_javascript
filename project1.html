@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature converter</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .holescreen {
+            width: 100vw;
+            height: 100vh;
+            background-color: #ca56f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            width: 70vw;
+            height: 85vh;
+            flex-direction: column;
+            align-items: center;
+            background-color: whitesmoke;
+            border-radius: 12px;
+            box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+        }
+
+        .container h1 {
+            margin-top: 4vh;
+            text-align: center;
+            height: min-content;
+            width: 70vw;
+            font-size: 4em;
+        }
+
+        .input-tag {
+            margin-top: 15vh;
+            /* border: 2px solid red; */
+            background-color: #ca56f1;
+            width: 35vw;
+            height: 35vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 7px;
+        }
+
+        .input-tag label {
+            font-size: xx-large;
+            padding: 0px;
+        }
+
+        .inp {
+            margin-top: 0px;
+            font-size: 25px;
+            width: 13vw;
+            height: 4vh;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn {
+            margin-top: -50px;
+            border-radius: 12px;
+        }
+
+        .btn button {
+            font-size: xx-large;
+            border-radius: 12px;
+            cursor: pointer;
+            padding: 3px;
+            background-color: rgb(141, 141, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="holescreen">
+        <div class="container">
+            <h1>This is temerature converter</h1>
+            <div class="input-tag">
+                <label> Celcious:- <br>
+                    <div class="input"><input type="number" class="inp" id="cel" value="0"></div>
+                </label>
+                <label> Fahrenheit:- <div class="input"><input type="number" class="inp" id="fah" value="32"></div>
+                    </label>
+            </div>
+            <div class="btn">
+                <button id="bttn" onclick="toggele()">converter</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggele() {
+            let cel = document.getElementById('cel');
+            let fah = document.getElementById('fah');
+            cel.addEventListener('input', function () {
+                let c = this.value;
+                let f = (c * 9 / 5) + 32;
+                if (!Number.isInteger(f)) {
+                    f = f.toFixed(4);
+                }
+                fah.value = f;
+            });
+            fah.addEventListener('input', function () {
+                let f = this.value;
+                let c = (f - 32) * 5 / 9;
+                if (!Number.isInteger(c)) {
+                    c = c.toFixed(4);
+                }
+                cel.value = c;
+            });
+        }
+    </script>
+</body>
+
+</html>

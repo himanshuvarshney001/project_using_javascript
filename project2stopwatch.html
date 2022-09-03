@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop watch</title>
+    <style>
+        body
+        {
+            background-color: cadetblue;
+        }
+      .container
+      {
+        width: 75vw;
+        height: 70vh;
+        margin: 14vh auto;
+        background-color: darkmagenta;
+      }
+      .digit
+      {
+        font-size: 30vh
+      }
+      .text
+      {
+        font-size: 4vh;
+        margin-top: 74px;
+        font-weight: bold;
+      }
+      .btn
+      {
+        /* border: 2px solid red; */
+        font-size: 42px;
+        margin-right: 12px;
+        width: 160px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .btn:hover{
+        box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+      }
+      .controler
+      {
+        text-align: center;
+      }
+      .timer
+      {
+        /* border: 2px solid red; */
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (max-width: 1196px) {
+        .digit
+        {
+          font-size: 20vh;
+        }
+        .digit
+        {
+          font-size: 10vh;
+        }
+      }
+    </style>
+</head>
+<body>
+     <div class="container">
+      <div class="timer">
+        <span class="digit" id="hr">00</span>
+        <span class="text">hr</span>
+        <span class="digit" id="min">00</span>
+        <span class="text">min</span>
+        <span class="digit" id="sec">00</span>
+        <span class="text">sec</span>
+        <span class="digit" id="count">00</span>
+      </div>
+      <div class="controler">
+        <button class="btn" id="Start" onclick="start()"> Start</button>
+        <button class="btn" id="stop" onclick="stop()">Stop</button>
+        <button class="btn" id="Reset" onclick="reset()">Reset</button>
+      </div>
+     </div>
+     <script>
+      let hr=0;
+      let min=0;
+      let sec=0;
+      let count=0;
+        
+      let timer=false;
+      function start()
+      {
+           timer=true;
+           stopwatch();
+      }
+      function stop()
+      {
+          timer=false;
+      }
+      function reset()
+      {
+          timer=false;
+          document.getElementById("count").innerHTML="00";
+          document.getElementById("sec").innerHTML="00";
+          document.getElementById("min").innerHTML="00";
+          document.getElementById("hr").innerHTML="00";
+      }
+      function stopwatch()
+      {
+          if(timer==true)
+          {
+            count=count+1;
+            if(count<=9)
+            {
+              document.getElementById("count").innerHTML="0"+count;
+            }
+            else
+            {
+              document.getElementById("count").innerHTML=count;
+            }
+            if(count==99)
+            {
+              sec=sec+1;
+              if(sec<=9)
+              {
+                document.getElementById("sec").innerHTML="0"+sec;
+              }
+              else
+              {
+                document.getElementById("sec").innerHTML=sec;
+              }
+               count=0;
+            }
+            else if(sec==60)
+            {
+               min=min+1;
+               if(min<=9)
+               {
+                document.getElementById("min").innerHTML="0"+min;
+               }
+               else
+               {
+                document.getElementById("min").innerHTML=min;
+               }
+               sec=0;
+            }
+            else if(min==60)
+            {
+               hr=hr+1;
+               if(hr<=9)
+               {
+                document.getElementById("hr").innerHTML="0"+hr;
+               }
+               else
+               {
+                document.getElementById("hr").innerHTML=hr;
+               }
+               min=0;
+            }
+            setTimeout("stopwatch()",10);
+          }
+      }
+     </script>
+</body>
+</html>
